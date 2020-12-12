@@ -4,19 +4,28 @@ const dispatchContext = createContext()
 
 const initialState = {
   // tags:[]
+  cart:[]
 }
 
 const reducer = (state, action) => {
   switch (action.type) {
-    // case 'ADD_TAG':
-    //   return {
-    //     ...state,
-    //     tags:[
-    //       ...state.tags,
-    //       action.newTag
-    //     ]
-    //   }
-    //   break
+    case 'ADD_CART':
+      const rest = state.cart.filter(item=>Object.keys(item)[0]!==action.newProduct.id)
+      const oldCant =
+        state.cart.filter(item=>Object.keys(item)[0]===action.newProduct.id)[0] && 
+        state.cart.filter(item=>Object.keys(item)[0]===action.newProduct.id)[0][action.newProduct.id].cantidad ||
+        0
+      return{
+        ...state,
+        cart:[
+          ...rest,
+          {[action.newProduct.id]:{
+            ...action.newProduct,
+            cantidad:oldCant+action.cantidad
+          }}
+        ]
+      }
+      break
     default:
       return state
   }

@@ -11,10 +11,18 @@ import Badge from '@material-ui/core/Badge'
 import IconButton from '@material-ui/core/IconButton'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 
+import {useStore} from 'Store'
+
 import useStyles from './Styles'
 
 export default function Header() {
   const classes = useStyles()
+  const {cart} = useStore()
+  let total = 0
+  cart.map(item=>{
+    total = total + Object.values(item)[0].cantidad
+  })
+
   return(
     <AppBar position="static" className={classes.appbar}>
       <Toolbar className={classes.toolbar}>
@@ -26,12 +34,9 @@ export default function Header() {
           <Grid item>
             <Logo/>
           </Grid>
-          {/*<Grid item>
-            <Search/>
-          </Grid>*/}
           <Grid item>
             <IconButton>
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={total} color="secondary">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
