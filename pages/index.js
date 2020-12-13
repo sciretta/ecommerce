@@ -11,11 +11,7 @@ export default function Index() {
     <StartLayout>
   	  {
         products && products.map(product=>(
-          <ProductCard 
-            img={product.src}
-            tags={product.tags}
-            id={product._id}
-          />
+          <ProductCard key={product.id} {...product}/>
         ))
       }
     </StartLayout>

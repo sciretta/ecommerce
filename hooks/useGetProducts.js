@@ -16,7 +16,13 @@ export default function useGetProducts(observer){
     })
     .then(res=>res.json())
     .then(res=>{
-    	setProducts(res.data)
+      const data = res.data.map(item=>({
+        id:item._id,
+        img:item.src,
+        tags:item.tags,
+        prize:Number(item.prize)
+      }))
+    	setProducts(data)
     })
     
 	},[page])

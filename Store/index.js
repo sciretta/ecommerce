@@ -18,12 +18,18 @@ const reducer = (state, action) => {
       return{
         ...state,
         cart:[
-          ...rest,
           {[action.newProduct.id]:{
             ...action.newProduct,
             cantidad:oldCant+action.cantidad
-          }}
+          }},
+          ...rest
         ]
+      }
+      break
+    case 'REMOVE_CART':
+      return {
+        ...state,
+        cart:[...state.cart.filter(item=>Object.keys(item)[0]!==action.id)]
       }
       break
     default:

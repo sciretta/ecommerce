@@ -6,6 +6,7 @@ export default function Management(){
   const [previewSource,setPreviewSource] = useState('')
   const [tags,setTags] = useState([])
   const [name,setName] = useState('')
+  const [prize,setPrize] = useState('')
 
   const handleTagLoad = () => {
     const tagInput = document.getElementById('tag-input')
@@ -38,7 +39,8 @@ export default function Management(){
       body:JSON.stringify({
         img:base64EncodedImage,
         tags,
-        name
+        name,
+        prize
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -49,6 +51,7 @@ export default function Management(){
       setPreviewSource('')
       setTags([])
       setName('')
+      setPrize('')
       console.log(res)
     })
   }
@@ -70,9 +73,14 @@ export default function Management(){
        <input 
           placeholder="name"
           type="text"
-          id="name-input"
           value={name}
           onChange={({target})=>setName(target.value)}
+       />
+       <input 
+          placeholder="prize"
+          type="text"
+          value={prize}
+          onChange={({target})=>setPrize(target.value)}
        />
        <button onClick={handleTagLoad}>
          Load tag
@@ -87,7 +95,7 @@ export default function Management(){
           src={previewSource}
         />
       )}
-      {name}
+      {name},{prize}
       {tags && tags.map(tag=><div>{tag}</div>)}
    </>
   )

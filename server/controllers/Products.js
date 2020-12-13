@@ -7,7 +7,7 @@ mongoDB()
 //method POST
 export const uploadProduct = async (req,res) => {
 	try{
-    const {img,tags,name} = req.body
+    const {img,tags,name,prize} = req.body
 
     const {public_id} = await cloudinary
 		  .uploader
@@ -23,7 +23,8 @@ export const uploadProduct = async (req,res) => {
 	  	src:public_id,
 	  	page:currPage,
 	  	name,
-	  	tags
+	  	tags,
+	  	prize
 	  })
 
 	  const productSaved = await newProduct.save()
@@ -43,7 +44,7 @@ export const getProducts = async(req,res) => {
 	try{
 		const page = Number(req.headers['page-request'])
 
-    const products = await Product.find({page},{src:1,tags:1})
+    const products = await Product.find({page})
 
 		return res.status(200).json({
 			succes:true,
@@ -51,7 +52,6 @@ export const getProducts = async(req,res) => {
 			data:products
 		})
 	}catch(err){
-		console.error(err)
 		return res.status(500).json({error:err.message})
 	}
 }

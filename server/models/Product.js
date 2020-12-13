@@ -19,6 +19,11 @@ const ProductSchema = new Schema({
 	name:{
 		type:String,
     required:true
+	},
+	prize:{
+		type:String,
+    required:true,
+    default:'0'
 	}
 })
 
