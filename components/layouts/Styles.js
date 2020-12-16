@@ -11,17 +11,37 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginRight: drawerWidth,
+    marginRight: drawerWidth
   },
   appBar: {
     boxShadow:'none',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
+    })
   },
   hide: {
-    display: 'none',
+    display: 'none'
+  },
+
+  //drawer content
+  whatsapp:{
+    background:'rgb(0,160,35)',
+    marginTop:5
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    
+    width:'50vw',
+    height:'60vh'
   }
 }))
 

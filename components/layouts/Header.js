@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -55,15 +56,20 @@ export default function Header({open,onOpen}) {
 }
 
 function Logo(){
+  const router = useRouter()
+  const handleClick = () => {
+    router.push('/')
+  }
   return(
-    <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+    <ButtonGroup variant="text" color="primary">
       <Button 
+        onClick={handleClick}
         variant="text" 
         style={{textTransform:'none'}}
       >
         <Typography 
           color="textPrimary" 
-          variant="h4"
+          variant="h2"
         >
           eCommerce
         </Typography>

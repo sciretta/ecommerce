@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid'
 import Toolbar from '@material-ui/core/Toolbar'
 import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import ChevronRightIcon from '@material-ui/icons/ChevronLeft'
 
 import Header from 'components/layouts/Header'
 import DrawerContent from 'components/layouts/DrawerContent'
@@ -60,7 +60,7 @@ export default function StartLayout({children}) {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-             <ChevronLeftIcon />
+            <ChevronRightIcon />
           </IconButton>
         </div>
         <Divider />

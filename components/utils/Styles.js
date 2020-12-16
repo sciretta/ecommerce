@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(theme => ({
 	//product card
   card: {
-    width: 260
+    width: 230
   },
   action:{
   	display:'flex',
@@ -13,10 +13,16 @@ const useStyles = makeStyles(theme => ({
   media:{
     height:300
   },
+  icon:{
+    color:theme.palette.text.secondary
+  },
+  delete:{
+    color:theme.palette.text.danger
+  },
   //product card ===>cart
   cartCard: {
     marginTop:10,
-    width: 170
+    width: 190
   },
   cartMedia:{
     height:230

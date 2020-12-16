@@ -1,6 +1,7 @@
 import { 
   uploadProduct,
-  getProducts
+  getProducts,
+  getProduct
 } from 'server/controllers/Products'
 
 export default async (req, res) => {
@@ -16,6 +17,12 @@ export default async (req, res) => {
     case 'getproducts':
       if(method==='GET')
         return getProducts(req,res)
+      else
+        return res.status(400).json({message:'Invalid method.'}) 
+      break
+    case 'getproduct':
+      if(method==='GET')
+        return getProduct(req,res)
       else
         return res.status(400).json({message:'Invalid method.'}) 
       break

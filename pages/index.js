@@ -11,7 +11,10 @@ export default function Index() {
     <StartLayout>
   	  {
         products && products.map(product=>(
-          <ProductCard key={product.id} {...product}/>
+          <ProductCard 
+            key={product.id} 
+            {...product}
+          />
         ))
       }
     </StartLayout>

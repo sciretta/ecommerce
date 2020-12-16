@@ -1,4 +1,6 @@
 import {useState} from 'react'
+import { useRouter } from 'next/router'
+
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
@@ -26,10 +28,18 @@ import useStyles from './Styles'
 export default function ProductCard(props) {
   const classes = useStyles()
   const dispatch = useDispatch()
+  const router = useRouter()
+
+  const handleClick = () => {
+    router.push(`/${props.id}`)
+  }
   return (
     <Grid item>
       <Card className={!props.cart?classes.card:classes.cartCard}>
-      <CardActionArea className={classes.action}>
+      <CardActionArea 
+        onClick={handleClick}
+        className={classes.action}
+      >
         <Image
           cloudName="dudyt4apn" 
           publicId={props.img}
@@ -78,6 +88,58 @@ function MainActions(props){
   )
 }
 
+function Carting(props){
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  const [factor, setFactor] = useState(1)
+
+  const handleChange = ({target}) => setFactor(target.value)
+
+  const handleAdd = () => dispatch({type:'ADD_CART',newProduct:props,cantidad:factor})
+
+  return(
+    <>
+      <FormControl variant="standard">
+        <Select
+          value={factor}
+          onChange={handleChange}
+          label="Cantidad"
+          className={classes.icon}
+        >
+          <MenuItem 
+            className={classes.icon} 
+            value={1}
+          >
+            1
+          </MenuItem>
+          <MenuItem 
+            className={classes.icon} 
+            value={3}
+          >
+            3
+          </MenuItem>
+          <MenuItem 
+            className={classes.icon} 
+            value={5}
+          >
+            5
+          </MenuItem>
+        </Select>
+      </FormControl>
+      <Typography variant="h5" color="textSecondary">
+        ${props.prize}
+      </Typography>
+      <IconButton 
+        onClick={handleAdd}
+      >
+        <ShoppingCartIcon 
+          className={classes.icon}
+        />
+      </IconButton>
+    </>
+  )
+}
+
 function CartingActions(props){
   const classes = useStyles()
   const dispatch = useDispatch()
@@ -93,14 +155,19 @@ function CartingActions(props){
         direction="column"
       >
         <Grid item>
-          {props.cantidad}x${props.prize}=${props.cantidad*props.prize}
+          <Typography variant="subtitle1" color="textSecondary">
+            {props.cantidad} × ${props.prize} = ${props.cantidad*props.prize}
+          </Typography>
         </Grid>
         <Grid item>
           <IconButton  
             size="small"
             onClick={handleRemove}
           >
-            <ClearIcon fontSize="small" />
+            <ClearIcon 
+              fontSize="small" 
+              className={classes.delete}
+            />
           </IconButton>
         </Grid>
       </Grid>
@@ -114,38 +181,5 @@ function Tag({tag}){
       label={tag}
       clickable 
     />
-  )
-}
-
-function Carting(props){
-	const dispatch = useDispatch()
-	const [factor, setFactor] = useState(1)
-
-	const handleChange = ({target}) => setFactor(target.value)
-
-  const handleAdd = () => dispatch({type:'ADD_CART',newProduct:props,cantidad:factor})
-
-  return(
-    <>
-      <FormControl variant="standard">
-        <Select
-          value={factor}
-          onChange={handleChange}
-          label="Cantidad"
-        >
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={5}>5</MenuItem>
-        </Select>
-      </FormControl>
-      <span>
-        ${props.prize}
-      </span>
-      <Button size="small" onClick={handleAdd}>
-        <ShoppingCartIcon 
-          fontSize="small"
-        />
-      </Button>
-    </>
   )
 }

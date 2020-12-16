@@ -55,3 +55,20 @@ export const getProducts = async(req,res) => {
 		return res.status(500).json({error:err.message})
 	}
 }
+
+//method GET
+export const getProduct = async(req,res) => {
+	try{
+		const productId = req.headers['product-id']
+    
+    const product = await Product.findById(productId)
+
+		return res.status(200).json({
+			succes:true,
+			message:`Product sended.`,
+			data:product
+		})
+	}catch(err){
+		return res.status(500).json({error:err.message})
+	}
+}
