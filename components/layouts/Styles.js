@@ -1,4 +1,4 @@
-import { fade, makeStyles } from '@material-ui/core/styles'
+import { fade, makeStyles, withStyles } from '@material-ui/core/styles'
 
 const drawerWidth = 240
 
@@ -25,23 +25,16 @@ const useStyles = makeStyles(theme => ({
   },
 
   //drawer content
-  whatsapp:{
-    background:'rgb(0,160,35)',
-    marginTop:5
-  },
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    
-    width:'50vw',
-    height:'60vh'
+
+}))
+
+export const buttonStyle = withStyles((theme) => ({
+  root: {
+    marginTop:5,
+    backgroundColor: 'rgb(0,160,35)',
+    '&:hover': {
+      backgroundColor:'rgb(0,170,30)',
+    }
   }
 }))
 

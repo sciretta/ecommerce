@@ -36,16 +36,19 @@ export default function ProductCard(props) {
   return (
     <Grid item>
       <Card className={!props.cart?classes.card:classes.cartCard}>
-      <CardActionArea 
-        onClick={handleClick}
-        className={classes.action}
-      >
-        <Image
-          cloudName="dudyt4apn" 
-          publicId={props.img}
-          className={!props.cart?classes.media:classes.cartMedia}
-        />
-      </CardActionArea>
+      <div style={{background:'white'}}>
+        <CardActionArea 
+          onClick={handleClick}
+          className={classes.action}
+        >
+          <Image
+            cloudName="dudyt4apn" 
+            publicId={props.img}
+            className={!props.cart?classes.media:classes.cartMedia}
+          />
+          
+        </CardActionArea>
+      </div>
       {!props.cart?
         (<MainActions {...props}/>):
         (<CartingActions {...props}/>)}

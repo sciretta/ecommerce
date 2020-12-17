@@ -1,4 +1,4 @@
-import cloudinary from 'server/cloudinary.config'
+// import cloudinary from 'server/cloudinary.config'
 import mongoDB from 'server/mongoDB.config'
 import Product from 'server/models/Product'
 
@@ -9,30 +9,30 @@ export const uploadProduct = async (req,res) => {
 	try{
     const {img,tags,name,prize} = req.body
 
-    const {public_id} = await cloudinary
-		  .uploader
-		  .upload(img,{
-		  	upload_preset:'shop'
-	    })
+   //  const {public_id} = await cloudinary
+		 //  .uploader
+		 //  .upload(img,{
+		 //  	upload_preset:'shop'
+	  //   })
 
-	  const {length} = await Product.find({},{page:1})
+	  // const {length} = await Product.find({},{page:1})
     
-	  const currPage = Math.floor(length/20)+1
+	  // const currPage = Math.floor(length/20)+1
 
-	  const newProduct = new Product({
-	  	src:public_id,
-	  	page:currPage,
-	  	name,
-	  	tags,
-	  	prize
-	  })
+	  // const newProduct = new Product({
+	  // 	src:public_id,
+	  // 	page:currPage,
+	  // 	name,
+	  // 	tags,
+	  // 	prize
+	  // })
 
-	  const productSaved = await newProduct.save()
+	  // const productSaved = await newProduct.save()
 
 	  return res.status(200).json({
 	  	succes:true,
 	  	message:'Image uploaded successfully.',
-	  	data:productSaved
+	  	// data:productSaved
 	  })
 	}catch(err){
 		return res.status(500).json({error:err.message})
@@ -67,6 +67,23 @@ export const getProduct = async(req,res) => {
 			succes:true,
 			message:`Product sended.`,
 			data:product
+		})
+	}catch(err){
+		return res.status(500).json({error:err.message})
+	}
+}
+
+//method POST
+export const sendClient = async(req,res) => {
+	try{
+		const {name,number,cart} = req.body
+
+		console.log(req.body)
+
+		return res.status(200).json({
+			succes:true,
+			message:'Cart recived.',
+			data:{name,cart}
 		})
 	}catch(err){
 		return res.status(500).json({error:err.message})

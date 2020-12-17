@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid'
 import Toolbar from '@material-ui/core/Toolbar'
 import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
-import ChevronRightIcon from '@material-ui/icons/ChevronLeft'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 
 import Header from 'components/layouts/Header'
 import DrawerContent from 'components/layouts/DrawerContent'

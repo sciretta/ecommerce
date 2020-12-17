@@ -6,9 +6,11 @@ import red from '@material-ui/core/colors/red'
 export const lightTheme = createMuiTheme({
   palette: {
   	primary:{
-  		main:grey[600]
+  		main:grey[600],
+      contrastText:grey[50]
   	},
     secondary:{
+      contrastText:grey[50],
       main:grey[900]
     },
     background:{
@@ -37,7 +39,7 @@ export const lightTheme = createMuiTheme({
       fontSize:50
     }
   },
-   props: {
+  props: {
     MuiWithWidth: {
       initialWidth: 'lg'
     }
